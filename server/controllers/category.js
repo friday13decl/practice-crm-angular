@@ -1,9 +1,13 @@
 module.exports.getAll = (req, res) => {
-
+  res.json({
+    message: 'Category All'
+  })
 }
 
 module.exports.getById = (req, res) => {
-
+  res.json({
+    message: 'Category ID'
+  })
 }
 
 module.exports.removeById = (req, res) => {
