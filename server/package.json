@@ -1,5 +1,5 @@
 {
-  "name": "practice-crm",
+  "name": "practice-crm-server",
   "version": "1.0.0",
   "description": "crm app for angular and nodejs practice",
   "main": "index.js",
