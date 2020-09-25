@@ -1,14 +1,17 @@
 const express = require('express')
-const controller = require('./../controllers/category')
 const passport = require('passport')
 
-const router = express.Router()
-const jwtAuthMiddleware = passport.authenticate('jwt', {session: false})
+const controller = require('./../controllers/category')
 
-router.get('/', jwtAuthMiddleware, controller.getAll)
-router.get('/:id', jwtAuthMiddleware, controller.getById)
-router.post('/create', controller.create)
-router.patch('/:id', controller.updateById)
-router.delete('/:id', controller.removeById)
+const router = express.Router()
+const middleware = [
+  passport.authenticate('jwt', {session: false})
+]
+
+router.get('/', middleware, controller.getAll)
+router.get('/:id', middleware, controller.getById)
+router.post('/', middleware, controller.create)
+router.patch('/:id', middleware, controller.updateById)
+router.delete('/:id', middleware, controller.removeById)
 
 module.exports = router

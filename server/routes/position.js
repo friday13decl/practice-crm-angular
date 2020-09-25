@@ -1,10 +1,16 @@
 const express = require('express')
-const controller = require('./../controllers/position')
-const router = express.Router()
+const passport = require('passport')
 
-router.get('/:categoryId', controller.getByCategoryId)
-router.post('/', controller.create)
-router.patch('/:id', controller.updateById)
-router.delete('/:id', controller.removeById)
+const controller = require('./../controllers/position')
+
+const router = express.Router()
+const middleware = [
+  passport.authenticate('jwt', {session: false})
+]
+
+router.get('/:categoryId', middleware, controller.getByCategoryId)
+router.post('/', middleware, controller.create)
+router.patch('/:id', middleware, controller.updateById)
+router.delete('/:id', middleware, controller.removeById)
 
 module.exports = router
