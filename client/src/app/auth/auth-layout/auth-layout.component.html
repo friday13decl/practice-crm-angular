@@ -1,7 +1,10 @@
-<nav>
-  <div class="nav-wrapper grey darken-1">
-    <a routerLink="/" class="brand-logo">Practice CRM</a>
-    <ul id="nav-module" class="right hide-on-med-and-down">
+<mat-toolbar color="primary">
+  <div>
+    <a class="logo" routerLink="/">
+      <mat-icon>beenhere</mat-icon>
+      Practice CRM
+    </a>
+    <ul class="right-menu">
       <li routerLinkActive="active">
         <a routerLink="/login">Login</a>
       </li>
@@ -10,7 +13,7 @@
       </li>
     </ul>
   </div>
-</nav>
+</mat-toolbar>
 
 <div class="auth-block">
   <router-outlet></router-outlet>
