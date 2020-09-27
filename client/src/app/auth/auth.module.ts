@@ -20,8 +20,7 @@ import { BasePageComponent } from './base-page/base-page.component';
   declarations: [
     AuthLayoutComponent,
     LoginPageComponent,
-    RegisterPageComponent,
-    BasePageComponent
+    RegisterPageComponent
   ],
   imports: [
     CommonModule,

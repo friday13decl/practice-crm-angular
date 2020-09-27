@@ -1,23 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
-@Component({
-  selector: 'app-base-page',
-  templateUrl: './base-page.component.html',
-  styleUrls: ['./base-page.component.scss']
-})
-export class BasePageComponent implements OnInit {
-  email: FormControl = new FormControl('', [Validators.required, Validators.email]);
-  password: FormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
+export interface AuthInterface {
+  onSubmit(): void;
+}
+
+@Component({template: ''})
+export abstract class BasePageComponent implements OnInit {
+  form: FormGroup;
+  email: FormControl;
+  password: FormControl;
+
   hide: boolean = true;
 
   headerText: string = '';
   submitBtnText: string = '';
   subHeaderText: string = 'Rule the world';
 
-  constructor() { }
-
   ngOnInit(): void {
+    this.email = new FormControl('', [Validators.required, Validators.email]);
+    this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+
+    this.form = new FormGroup({
+      email: this.email,
+      password: this.password
+    });
   }
 
   getErrorMessage(control: FormControl) {
@@ -26,7 +33,7 @@ export class BasePageComponent implements OnInit {
     }
 
     if (control.hasError('minlength')) {
-      return 'Length is too short';
+      return `Password should be more than ${control.errors['minlength']['requiredLength']} symbols`;
     }
 
     return control.hasError('email') ? 'Not a valid email' : '';

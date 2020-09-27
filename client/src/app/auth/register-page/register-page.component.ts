@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {BasePageComponent} from "../base-page/base-page.component";
+import {AuthInterface, BasePageComponent} from "../base-page/base-page.component";
 
 @Component({
   selector: 'app-register-page',
   templateUrl: '../base-page/base-page.component.html',
   styleUrls: ['../base-page/base-page.component.scss']
 })
-export class RegisterPageComponent extends BasePageComponent implements OnInit {
+export class RegisterPageComponent extends BasePageComponent implements OnInit, AuthInterface {
 
   constructor() {
     super();
@@ -15,6 +15,11 @@ export class RegisterPageComponent extends BasePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
+  }
+
+  onSubmit(): void {
+
   }
 
 }
