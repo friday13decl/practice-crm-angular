@@ -5,9 +5,10 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthModule} from './auth/auth.module';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthBaseService} from "./shared/services/auth.base.service";
 import {AuthService} from "./shared/services/auth.service";
+import {TokenInterceptor} from "./shared/classes/token.interceptor";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {AuthService} from "./shared/services/auth.service";
     AuthModule
   ],
   providers: [
-    {provide: AuthBaseService, useClass: AuthService}
+    {provide: AuthBaseService, useClass: AuthService},
+    {provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor}
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ import {tap} from "rxjs/operators";
 import {AuthBaseService} from "./auth.base.service";
 
 export type LoginResponse = { token: string };
+const LOCAL_STORAGE_TOKEN_NAME: string = 'auth-token';
 
 @Injectable()
 export class AuthService implements AuthBaseService {
@@ -13,6 +14,10 @@ export class AuthService implements AuthBaseService {
   private token: string = null;
 
   constructor(private http: HttpClient) {
+    const tokenFromLocalStorage = localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME);
+    if (tokenFromLocalStorage) {
+      this.setToken(tokenFromLocalStorage);
+    }
   }
 
   register(user: User): Observable<User> {
@@ -22,7 +27,7 @@ export class AuthService implements AuthBaseService {
   login(user: User): Observable<LoginResponse> {
     return this.http.post<LoginResponse>('/api/auth/login', user)
       .pipe(tap(({token}) => {
-        localStorage.setItem('auth-token', token);
+        localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, token);
         this.setToken(token);
       }));
   }
@@ -41,6 +46,6 @@ export class AuthService implements AuthBaseService {
 
   logout(): void {
     this.setToken(null);
-    localStorage.removeItem('auth-token');
+    localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
   }
 }
