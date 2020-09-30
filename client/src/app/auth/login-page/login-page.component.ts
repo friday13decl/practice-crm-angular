@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthInterface, BasePageComponent} from "../base-page/base-page.component";
-import {AuthService} from "../../shared/services/auth.service";
+import {BasePageComponent} from "../base-page/base-page.component";
+import {AuthBaseService} from "../../shared/services/auth.base.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
@@ -9,11 +9,11 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
   templateUrl: '../base-page/base-page.component.html',
   styleUrls: ['../base-page/base-page.component.scss']
 })
-export class LoginPageComponent extends BasePageComponent implements OnInit, OnDestroy, AuthInterface {
+export class LoginPageComponent extends BasePageComponent implements OnInit, OnDestroy {
 
   authSub: Subscription;
 
-  constructor(private auth: AuthService,
+  constructor(private auth: AuthBaseService,
               private router: Router,
               private route: ActivatedRoute) {
     super();

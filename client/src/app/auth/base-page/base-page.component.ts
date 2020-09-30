@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
-export interface AuthInterface {
-  onSubmit(): void;
-}
 
 @Component({template: ''})
 export abstract class BasePageComponent implements OnInit {
@@ -27,7 +24,9 @@ export abstract class BasePageComponent implements OnInit {
     });
   }
 
-  getErrorMessage(control: FormControl) {
+  abstract onSubmit(): void;
+
+  getErrorMessage(control: FormControl): string {
     if (control.hasError('required')) {
       return 'You must enter a value';
     }

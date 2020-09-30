@@ -11,9 +11,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {LoginPageComponent} from './login-page/login-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
-import {AppRoutingModule} from './auth-routing.module';
+import {AuthRoutingModule} from './auth-routing.module';
 import {AuthLayoutComponent} from "./auth-layout/auth-layout.component";
-import { BasePageComponent } from './base-page/base-page.component';
 
 
 @NgModule({
@@ -24,7 +23,7 @@ import { BasePageComponent } from './base-page/base-page.component';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    AuthRoutingModule,
     MatToolbarModule,
     MatIconModule,
     MatCardModule,

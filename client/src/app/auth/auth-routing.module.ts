@@ -6,7 +6,7 @@ import {RegisterPageComponent} from "./register-page/register-page.component";
 
 const routes: Routes = [
   {
-    path: '', component: AuthLayoutComponent, children: [
+    path: '', component: AuthLayoutComponent, canActivate: [], children: [
       {path: '', pathMatch: 'full', redirectTo: 'login'},
       {path: 'login', component: LoginPageComponent},
       {path: 'register', component: RegisterPageComponent}
@@ -22,5 +22,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule {
+export class AuthRoutingModule {
 }
