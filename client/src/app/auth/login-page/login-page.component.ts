@@ -3,6 +3,7 @@ import {BasePageComponent} from "../base-page/base-page.component";
 import {AuthBaseService} from "../../shared/services/auth.base.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login-page',
@@ -15,8 +16,9 @@ export class LoginPageComponent extends BasePageComponent implements OnInit, OnD
 
   constructor(private auth: AuthBaseService,
               private router: Router,
-              private route: ActivatedRoute) {
-    super();
+              private route: ActivatedRoute,
+              snackbar: MatSnackBar) {
+    super(snackbar);
     this.headerText = 'Login into system';
     this.submitBtnText = 'Login';
   }
@@ -26,9 +28,11 @@ export class LoginPageComponent extends BasePageComponent implements OnInit, OnD
 
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-
+        this.showToast('Now you can login with your credentials');
       } else if (params['accessDenied']) {
-
+        this.showToast('Please login into system');
+      } else if (params['sessionFailed']) {
+        this.showToast('Your session is expired. Please login into system again');
       }
     });
   }
@@ -39,7 +43,7 @@ export class LoginPageComponent extends BasePageComponent implements OnInit, OnD
     this.authSub = this.auth.login(this.form.value).subscribe(async res => {
       await this.router.navigate(['/overview']);
     }, err => {
-      console.warn(err);
+      this.showToast(err.error.message);
       this.form.enable();
     });
   }

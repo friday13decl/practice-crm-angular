@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({template: ''})
@@ -14,6 +15,9 @@ export abstract class BasePageComponent implements OnInit {
   submitBtnText: string = '';
   subHeaderText: string = 'Rule the world';
 
+  protected constructor(private snackbar: MatSnackBar) {
+  }
+
   ngOnInit(): void {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
@@ -21,6 +25,14 @@ export abstract class BasePageComponent implements OnInit {
     this.form = new FormGroup({
       email: this.email,
       password: this.password
+    });
+  }
+
+  showToast(msg: string): void {
+    this.snackbar.open(msg, null, {
+      duration: 3000,
+      horizontalPosition: "center",
+      verticalPosition: "top"
     });
   }
 
