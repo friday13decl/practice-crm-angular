@@ -1,1 +1,58 @@
-<p>site-layout works!</p>
+<mat-sidenav-container>
+  <mat-sidenav [opened]="opened" mode="side">
+    <div class="sidenav-body">
+      <div class="logo">
+        <a [routerLink]="links[0].url">
+          <mat-icon>beenhere</mat-icon>
+          Practice CRM
+        </a>
+      </div>
+      <ul class="nav-list">
+        <li *ngFor="let link of links" routerLinkActive="active" [routerLink]="link.url">
+          <a>{{link.name}}</a>
+        </li>
+        <li (click)="logout($event)">
+          <a>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+
+    <div class="btn-action"
+         (mouseover)="isMenuHidden = false"
+         (mouseout)="isMenuHidden = true">
+      <button mat-fab color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+      <ul [hidden]="isMenuHidden">
+        <li>
+          <button mat-mini-fab color="accent" routerLink="/order">
+            <mat-icon>bookmark</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-mini-fab color="accent" routerLink="/categories/new">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+<!--    <button mat-fab [matMenuTriggerFor]="aboveMenu" color="primary" class="btn-action">-->
+<!--    <button mat-fab color="primary" class="btn-action">-->
+<!--      <mat-icon>add</mat-icon>-->
+<!--    </button>-->
+<!--    <mat-menu #aboveMenu="matMenu" yPosition="above">-->
+<!--      <button mat-menu-item>-->
+<!--        <mat-icon>bookmark</mat-icon>-->
+<!--      </button>-->
+<!--      <button mat-menu-item>-->
+<!--        <mat-icon>additem</mat-icon>-->
+<!--      </button>-->
+<!--    </mat-menu>-->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

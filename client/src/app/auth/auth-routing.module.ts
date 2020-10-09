@@ -6,7 +6,7 @@ import {RegisterPageComponent} from "./register-page/register-page.component";
 
 const routes: Routes = [
   {
-    path: '', component: AuthLayoutComponent, canActivate: [], children: [
+    path: '', component: AuthLayoutComponent, children: [
       {path: '', pathMatch: 'full', redirectTo: 'login'},
       {path: 'login', component: LoginPageComponent},
       {path: 'register', component: RegisterPageComponent}
