@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BasePageComponent} from "../base-page/base-page.component";
-import {AuthBaseService} from "../../shared/services/auth.base.service";
+import {IAuthService} from "../../shared/services/auth.service";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -14,7 +14,7 @@ export class RegisterPageComponent extends BasePageComponent implements OnInit, 
 
   authSub: Subscription;
 
-  constructor(private auth: AuthBaseService,
+  constructor(private auth: IAuthService,
               private router: Router,
               snackbar: MatSnackBar) {
     super(snackbar);

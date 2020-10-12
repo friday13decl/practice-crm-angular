@@ -1,1 +1,23 @@
-<p>categories-page works!</p>
+<div class="page-title">
+  <h4>Categories</h4>
+  <button mat-raised-button color="accent" routerLink="/categories/new">Add new category</button>
+</div>
+
+<div>
+  <div class="collection" *ngIf="categories$ | async as categories; else loader">
+    <ng-container *ngIf="categories.length !== 0; else empty">
+      <a *ngFor="let category of categories" [routerLink]="['/categories', category._id]"
+         class="collection-item">{{category.name}}</a>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <span class="collection-no-data">No data!</span>
+</ng-template>
+
+

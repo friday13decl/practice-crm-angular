@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {AuthBaseService} from "../services/auth.base.service";
+import {IAuthService} from "../services/auth.service";
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthBaseService,
+  constructor(private auth: IAuthService,
               private router: Router) {
 
   }

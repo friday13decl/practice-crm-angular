@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BasePageComponent} from "../base-page/base-page.component";
-import {AuthBaseService} from "../../shared/services/auth.base.service";
+import {IAuthService} from "../../shared/services/auth.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -14,7 +14,7 @@ export class LoginPageComponent extends BasePageComponent implements OnInit, OnD
 
   authSub: Subscription;
 
-  constructor(private auth: AuthBaseService,
+  constructor(private auth: IAuthService,
               private router: Router,
               private route: ActivatedRoute,
               snackbar: MatSnackBar) {
@@ -40,7 +40,7 @@ export class LoginPageComponent extends BasePageComponent implements OnInit, OnD
   onSubmit(): void {
     this.form.disable();
 
-    this.authSub = this.auth.login(this.form.value).subscribe(async res => {
+    this.authSub = this.auth.login(this.form.value).subscribe(async () => {
       await this.router.navigate(['/overview']);
     }, err => {
       this.showToast(err.error.message);

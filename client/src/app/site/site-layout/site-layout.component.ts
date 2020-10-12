@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {AuthBaseService} from "../../shared/services/auth.base.service";
+import {IAuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-site-layout',
@@ -20,7 +20,7 @@ export class SiteLayoutComponent implements OnInit, AfterViewInit {
     {url: '/categories', name: 'Positions'}
   ]
 
-  constructor(private auth: AuthBaseService,
+  constructor(private auth: IAuthService,
               private route: Router) { }
 
   ngOnInit(): void {
