@@ -11,20 +11,24 @@
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="email" id="email"
                required placeholder="abc@example.com">
-        <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
+        <mat-error *ngIf="form.controls.email.invalid">
+          {{getErrorMessage(form.controls.email)}}
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" color="accent"
-                      [hintLabel]="password.value.length < 6 ? 'Min 6 characters' : ''"
+                      [hintLabel]="form.controls.password.value.length < 6 ? 'Min 6 characters' : ''"
                       hideRequiredMarker="true">
         <mat-label>Password</mat-label>
-        <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'"
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
                minlength="6" id="password" required>
         <button mat-icon-button matSuffix (click)="hide = !hide"
                 [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <!--      <mat-hint align="end">{{password.value?.length || 0}}</mat-hint>-->
-        <mat-error *ngIf="password.invalid">{{getErrorMessage(password)}}</mat-error>
+        <!--      <mat-hint align="end">{{form.controls.password.value?.length || 0}}</mat-hint>-->
+        <mat-error *ngIf="form.controls.password.invalid">
+          {{getErrorMessage(form.controls.password)}}
+        </mat-error>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions align="end">

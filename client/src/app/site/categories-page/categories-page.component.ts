@@ -12,10 +12,10 @@ export class CategoriesPageComponent implements OnInit {
 
   categories$: Observable<Array<Category>>;
 
-  constructor(private categoryService: ICategoriesService) { }
+  constructor(private categoriesService: ICategoriesService) { }
 
   ngOnInit(): void {
-    this.categories$ = this.categoryService.fetch();
+    this.categories$ = this.categoriesService.fetch();
   }
 
 }

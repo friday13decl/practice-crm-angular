@@ -2,19 +2,39 @@
   <h4>
     <a routerLink="/categories">Categories</a>
     <mat-icon>keyboard_arrow_right</mat-icon>
-    {{isNew? 'New': 'Edit'}} category
+    {{isNew ? 'New' : 'Edit'}} category
   </h4>
-  <button *ngIf="!isNew" mat-raised-button matTooltip="Remove category" matTooltipPosition="before"
-          color="warn">
+  <button *ngIf="!isNew" mat-raised-button matTooltip="Remove category"
+          matTooltipPosition="before" color="warn">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
 
-<div>
-  <form [formGroup]="form">
+<div class="category-content">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="category-form">
+    <mat-form-field appearance="outline" color="accent" hideRequiredMarker="true">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="name" type="text" id="title" required>
+      <mat-error *ngIf="form.controls.name.invalid">Please fill the title</mat-error>
+    </mat-form-field>
 
+    <input type="file" class="dn" #file>
+    <button mat-raised-button color="accent" type="button" class="btn-load-image"
+            (click)="openFileBrowser()" [disabled]="form.disabled">
+      <mat-icon>backup</mat-icon>
+      Load image
+    </button>
 
+    <button type="submit" mat-raised-button color="primary"
+            class="btn-save" [disabled]="form.invalid || form.disabled">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
   </form>
+
+  <div class="image-preview">
+    <img *ngIf="imagePreview" [src]="imagePreview">
+  </div>
 </div>
 
 <!--<app-positions-form></app-positions-form>-->

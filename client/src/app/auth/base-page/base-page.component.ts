@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({template: ''})
 export abstract class BasePageComponent implements OnInit {
+
   form: FormGroup;
-  email: FormControl;
-  password: FormControl;
 
   hide: boolean = true;
 
@@ -19,12 +18,9 @@ export abstract class BasePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.email = new FormControl('', [Validators.required, Validators.email]);
-    this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-
     this.form = new FormGroup({
-      email: this.email,
-      password: this.password
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
   }
 
@@ -38,7 +34,7 @@ export abstract class BasePageComponent implements OnInit {
 
   abstract onSubmit(): void;
 
-  getErrorMessage(control: FormControl): string {
+  getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'You must enter a value';
     }
