@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from "../interfaces";
+import {User} from "@shared/interfaces";
 import {Observable} from "rxjs";
 import {AuthServiceImpl} from "./impl/auth.service";
 import {AuthServiceMock} from "./mock/auth.service";

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BasePageComponent} from "../base-page/base-page.component";
-import {IAuthService} from "../../shared/services/auth.service";
+import {IAuthService} from "@core/services/auth.service";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";

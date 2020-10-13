@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ICategoriesService} from "../categories.service";
-import {Category} from "../../interfaces";
+import {Category} from "@shared/interfaces";
 import {Observable} from "rxjs";
 
 @Injectable()

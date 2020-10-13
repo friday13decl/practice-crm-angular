@@ -1,0 +1,20 @@
+<div class="page-title">
+  <h4>
+    <a routerLink="/categories">Categories</a>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+    {{isNew? 'New': 'Edit'}} category
+  </h4>
+  <button *ngIf="!isNew" mat-raised-button matTooltip="Remove category" matTooltipPosition="before"
+          color="warn">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
+<div>
+  <form [formGroup]="form">
+
+
+  </form>
+</div>
+
+<!--<app-positions-form></app-positions-form>-->

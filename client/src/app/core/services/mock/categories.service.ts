@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ICategoriesService} from "../categories.service";
 import {Observable, of} from "rxjs";
-import {Category} from "../../interfaces";
+import {Category} from "@shared/interfaces";
 import {delay} from "rxjs/operators";
 
 @Injectable()

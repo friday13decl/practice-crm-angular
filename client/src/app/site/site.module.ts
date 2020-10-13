@@ -1,11 +1,6 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from '@angular/common';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {SharedModule} from "@shared/shared.module";
 
 import {SiteRoutingModule} from "./site-routing.module";
 import {SiteLayoutComponent} from './site-layout/site-layout.component';
@@ -14,7 +9,8 @@ import {AnalyticsPageComponent} from './analytics-page/analytics-page.component'
 import {HistoryPageComponent} from './history-page/history-page.component';
 import {OrderPageComponent} from './order-page/order-page.component';
 import {CategoriesPageComponent} from './categories-page/categories-page.component';
-import {LoaderComponent} from '../shared/components/loader/loader.component';
+import {CategoriesFormComponent} from './categories-page/categories-form/categories-form.component';
+import {PositionsFormComponent} from './categories-page/categories-form/positions-form/positions-form.component';
 
 
 @NgModule({
@@ -25,16 +21,12 @@ import {LoaderComponent} from '../shared/components/loader/loader.component';
     HistoryPageComponent,
     OrderPageComponent,
     CategoriesPageComponent,
-    LoaderComponent
+    CategoriesFormComponent,
+    PositionsFormComponent
   ],
   imports: [
-    CommonModule,
     SiteRoutingModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatProgressSpinnerModule
+    SharedModule
   ],
   providers: []
 })

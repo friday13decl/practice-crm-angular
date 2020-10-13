@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {IAuthService} from "../../shared/services/auth.service";
+import {IAuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-site-layout',

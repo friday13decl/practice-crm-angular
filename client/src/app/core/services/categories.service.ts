@@ -1,6 +1,6 @@
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
-import {Category} from "../interfaces";
+import {Category} from "@shared/interfaces";
 import {CategoriesServiceImpl} from "./impl/categories.service";
 import {CategoriesServiceMock} from "./mock/categories.service";
 

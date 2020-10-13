@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IAuthService, LoginResponse} from "../auth.service";
-import {User} from "../../interfaces";
+import {User} from "@shared/interfaces";
 import {Observable, of} from "rxjs";
 
 export const LOCAL_STORAGE_TOKEN_NAME: string = 'auth-token';
