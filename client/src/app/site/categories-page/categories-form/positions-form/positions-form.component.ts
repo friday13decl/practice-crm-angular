@@ -1,4 +1,4 @@
-import {Component, ContentChild, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({
@@ -18,7 +18,9 @@ export class PositionsFormComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(this.dialogContainer, {});
+    this.dialog.open(this.dialogContainer, {
+      maxWidth: 500
+    });
   }
 
 }

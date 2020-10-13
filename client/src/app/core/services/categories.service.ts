@@ -1,6 +1,6 @@
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
-import {Category} from "@shared/interfaces";
+import {Category, ServerMessage} from "@shared/interfaces";
 import {environment} from "@env";
 import {CategoriesServiceImpl} from "./impl/categories.service";
 import {CategoriesServiceMock} from "./mock/categories.service";
@@ -17,4 +17,6 @@ export abstract class ICategoriesService {
   abstract create(name: string, image?: File): Observable<Category>
 
   abstract update(id: string, name: string, image?: File): Observable<Category>
+
+  abstract delete(id: string): Observable<ServerMessage>
 }

@@ -9,3 +9,7 @@ export interface Category {
   imageSrc?: string
   user?: string
 }
+
+export interface ServerMessage {
+  message: string
+}

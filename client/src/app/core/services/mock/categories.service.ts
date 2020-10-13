@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ICategoriesService} from "../categories.service";
 import {fromEvent, Observable, of} from "rxjs";
-import {Category} from "@shared/interfaces";
+import {Category, ServerMessage} from "@shared/interfaces";
 import {delay, switchMap} from "rxjs/operators";
 
 @Injectable()
@@ -26,7 +26,7 @@ export class CategoriesServiceMock implements ICategoriesService {
   }
 
   fetch(): Observable<Array<Category>> {
-    return of(this.categories).pipe(delay(2000));
+    return of(this.categories).pipe(delay(1000));
   }
 
   getById(id: string): Observable<Category> {
@@ -45,7 +45,7 @@ export class CategoriesServiceMock implements ICategoriesService {
             name, imageSrc, _id: (++this.count) + ''
           }
           this.categories.push(category);
-          return of(category);
+          return of(category).pipe(delay(1000));
         })
       )
       reader.readAsDataURL(image);
@@ -55,13 +55,18 @@ export class CategoriesServiceMock implements ICategoriesService {
         name, imageSrc, _id: (++this.count) + ''
       }
       this.categories.push(category);
-      return of(category);
+      return of(category).pipe(delay(1000));
     }
   }
 
   update(id: string, name: string, image?: File): Observable<Category> {
     const idx = this.categories.findIndex(c => c._id === id);
     this.categories[idx] = {...this.categories[idx], name};
-    return of(this.categories[idx]);
+    return of(this.categories[idx]).pipe(delay(1000));
+  }
+
+  delete(id: string): Observable<ServerMessage> {
+    this.categories = this.categories.filter(c => c._id !== id);
+    return of({message: 'Category was removed'}).pipe(delay(1000));
   }
 }

@@ -1,11 +1,12 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ICategoriesService} from "@core/services/categories.service";
 import {switchMap} from "rxjs/operators";
 import {fromEvent, Observable, of} from "rxjs";
 import {Category} from "@shared/interfaces";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-categories-form',
@@ -16,6 +17,9 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
 
   @ViewChild('file') fileRef: ElementRef;
 
+  @ViewChild('dialogContainer')
+  private dialogContainer: TemplateRef<any>;
+
   form: FormGroup;
   image: File;
   imagePreview: string | ArrayBuffer;
@@ -23,8 +27,10 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
   category: Category;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private categoriesService: ICategoriesService,
-              private snackbar: MatSnackBar) {
+              private snackbar: MatSnackBar,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -53,9 +59,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
         }
         this.form.enable();
       },
-      err => {
-        this.showToast(err.error.message);
-      }
+      err => this.showToast(err.error.message)
     );
   }
 
@@ -76,6 +80,21 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
 
   openFileBrowser() {
     this.fileRef.nativeElement.click();
+  }
+
+  deleteCategory() {
+    const dialogRef = this.dialog.open(this.dialogContainer, {});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.form.disable();
+        this.categoriesService.delete(this.category._id)
+          .subscribe(
+            ({message}) => this.showToast(message),
+            err => this.showToast(err.error.message),
+            () => this.router.navigate(['/categories'])
+          )
+      }
+    });
   }
 
   onSubmit() {
