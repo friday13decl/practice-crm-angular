@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const config = require('config')
+const config = require('../config')
 
 module.exports = (req, res, next) => {
   if (req.method === 'OPTIONS') {
@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
         message: 'Not authorized for this operation'
       })
     }
-    req.user = jwt.verify(token, config.get('jwtSecret'))
+    req.user = jwt.verify(token, config.jwtSecret)
     next()
   } catch (e) {
     res.status(401).json({

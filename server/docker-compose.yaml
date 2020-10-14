@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  crm-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: crm-server
+    container_name: crm-server
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    depends_on:
+      - crm-mongo
+    env_file: .env
+    environment:
+      - PORT=$PORT
+      - MONGO_DB_ADDR=crm-mongo
+      - MONGO_DB_PORT=$MONGO_DB_PORT
+      - MONGO_DB_NAME=$MONGO_DB_NAME
+      - JWT_SECRET=$JWT_SECRET
+      - YA_DISK_TOKEN=$YA_DISK_TOKEN
+      - FILE_UPLOAD_PATH=$FILE_UPLOAD_PATH
+    networks:
+      - crm-network
+
+  crm-mongo:
+    image: mongo:latest
+    container_name: crm-mongo
+    volumes:
+      - mongodata:/data/db
+    restart: unless-stopped
+    networks:
+      - crm-network
+
+networks:
+  crm-network:
+    name: crm-network
+    driver: bridge
+
+volumes:
+  mongodata:
