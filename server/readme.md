@@ -29,3 +29,12 @@ Hot to work with mongo docker image
     `show collections` - list collections in current db
     
     `db.users.find()` - select data from collection
+    
+--------------------
+* Docker compose
+
+    `docker-compose up -d` - start docker compose with yaml file in current folder
+    
+    `docker-compose down` - stop docker compose
+    
+    `docker rmi ${docker images -q}` - remove all noname images

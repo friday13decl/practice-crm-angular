@@ -1,11 +1,11 @@
 const express = require('express')
 const fileUpload = require('express-fileupload')
 const mongoose = require('mongoose')
-const config = require('config')
 const morgan = require('morgan')
 const cors = require('cors')
 const passport = require('passport')
 
+const config = require('./config')
 const strategy = require('./middleware/passport.middleware')
 const authRoutes = require('./routes/auth')
 const analyticsRoutes = require('./routes/analytics')
@@ -38,9 +38,9 @@ app.use('/api/position', positionRoutes)
 app.use('/api/uploads', uploadsRoutes)
 
 module.exports = () => {
-  const port = config.get('port') || 5000
+  const port = config.port || 3000
 
-  mongoose.connect(config.get('mongoUri'), {
+  mongoose.connect(config.mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true

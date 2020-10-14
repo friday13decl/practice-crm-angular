@@ -1,7 +1,9 @@
 # Node files
 /node_modules
-/config/default.json
 
 # System Files
 .DS_Store
 Thumbs.db
+
+# Project Files
+/.env

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "server": "nodemon index"
+    "server": "nodemon -r dotenv/config index"
   },
   "keywords": [
     "angular",
@@ -30,6 +30,7 @@
     "yandex-disk": "0.0.8"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   }
 }

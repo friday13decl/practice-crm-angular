@@ -1,10 +1,9 @@
 const YandexDisk = require('yandex-disk').YandexDisk
-const config = require('config')
-
+const config = require('../config')
 const Category = require('../models/Category')
 const Position = require('../models/Position')
 
-const disk = new YandexDisk(config.get('yaDiskToken'))
+const disk = new YandexDisk(config.yaDiskToken)
 
 module.exports.getAll = async (req, res) => {
   try {
@@ -32,7 +31,7 @@ module.exports.removeById = async (req, res) => {
     await Position.remove({category: req.params.id})
     if (filename.length > 0) {
       await new Promise(resolve => {
-        disk.remove(config.get('fileUploadPath') + filename, err => {
+        disk.remove(config.fileUploadPath + filename, err => {
           if (err) {
             res.status(500).json({message: 'Something went wrong'})
           }
@@ -51,7 +50,7 @@ module.exports.create = async (req, res) => {
   if (req.files && Object.keys(req.files).length > 0) {
     const image = req.files.image
     filename = new Date().getTime() + '_' + image.name
-    const imageSrc = config.get('fileUploadPath') + filename
+    const imageSrc = config.fileUploadPath + filename
     await new Promise(resolve => {
       disk.writeFile(imageSrc, image.data, 'utf8', (err, result) => {
         if (err) {
