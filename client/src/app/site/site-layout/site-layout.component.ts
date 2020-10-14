@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {IAuthService} from "../../core/services/auth.service";
+import {Router} from '@angular/router';
+import {IAuthService} from '@core/services/auth.service';
 
 @Component({
   selector: 'app-site-layout',
@@ -9,8 +9,8 @@ import {IAuthService} from "../../core/services/auth.service";
 })
 export class SiteLayoutComponent implements OnInit, AfterViewInit {
 
-  opened: boolean = true;
-  isMenuHidden: boolean = true;
+  opened = true;
+  isMenuHidden = true;
 
   links: Array<{url: string, name: string}> = [
     {url: '/overview', name: 'Overview'},
@@ -18,7 +18,7 @@ export class SiteLayoutComponent implements OnInit, AfterViewInit {
     {url: '/history', name: 'History'},
     {url: '/order', name: 'New order'},
     {url: '/categories', name: 'Positions'}
-  ]
+  ];
 
   constructor(private auth: IAuthService,
               private route: Router) { }
@@ -29,7 +29,7 @@ export class SiteLayoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
 
-  logout(event) {
+  logout(event): void {
     event.preventDefault();
     this.auth.logout();
     this.route.navigate(['/login']);

@@ -1,12 +1,12 @@
 import {AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ICategoriesService} from "@core/services/categories.service";
-import {switchMap} from "rxjs/operators";
-import {fromEvent, Observable, of} from "rxjs";
-import {Category} from "@shared/interfaces";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialog} from "@angular/material/dialog";
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ICategoriesService} from '@core/services/categories.service';
+import {switchMap} from 'rxjs/operators';
+import {fromEvent, Observable, of} from 'rxjs';
+import {Category} from '@shared/interfaces';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-categories-form',
@@ -18,12 +18,12 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
   @ViewChild('file') fileRef: ElementRef;
 
   @ViewChild('dialogContainer')
-  private dialogContainer: TemplateRef<any>;
+  dialogContainer: TemplateRef<any>;
 
   form: FormGroup;
   image: File;
   imagePreview: string | ArrayBuffer;
-  isNew: boolean = true;
+  isNew = true;
   category: Category;
 
   constructor(private route: ActivatedRoute,
@@ -40,11 +40,11 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
 
     this.form.disable();
 
-    this.route.params.pipe(
-      switchMap((params: Params) => {
-        if (params['id']) {
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        if (params.get('id')) {
           this.isNew = false;
-          return this.categoriesService.getById(params['id']);
+          return this.categoriesService.getById(params.get('id'));
         }
         return of(null);
       })
@@ -78,12 +78,12 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
       });
   }
 
-  openFileBrowser() {
+  openFileBrowser(): void {
     this.fileRef.nativeElement.click();
   }
 
-  deleteCategory() {
-    const dialogRef = this.dialog.open(this.dialogContainer, {});
+  deleteCategory(): void {
+    const dialogRef = this.dialog.open(this.dialogContainer);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.form.disable();
@@ -92,12 +92,12 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
             ({message}) => this.showToast(message),
             err => this.showToast(err.error.message),
             () => this.router.navigate(['/categories'])
-          )
+          );
       }
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     let obs$: Observable<Category>;
     this.form.disable();
     if (this.isNew) {
@@ -113,7 +113,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
       },
       err => {
         this.form.enable();
-        this.showToast(err.error.message)
+        this.showToast(err.error.message);
       }
     );
   }
@@ -121,8 +121,8 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
   showToast(msg: string): void {
     this.snackbar.open(msg, null, {
       duration: 3000,
-      horizontalPosition: "center",
-      verticalPosition: "top"
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
     });
   }
 }

@@ -4,8 +4,9 @@
     <mat-icon>keyboard_arrow_right</mat-icon>
     {{isNew ? 'New' : 'Edit'}} category
   </h4>
-  <button *ngIf="!isNew" mat-raised-button matTooltip="Delete category" [disabled]="form.disabled"
-          matTooltipPosition="before" color="warn" (click)="deleteCategory()">
+  <button *ngIf="!isNew" mat-raised-button matTooltip="Delete category"
+          [disabled]="form.disabled" matTooltipPosition="before"
+          matTooltipClass="page-tooltip" color="warn" (click)="deleteCategory()">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
@@ -38,12 +39,15 @@
 </div>
 
 <div class="positions-container">
-  <app-positions-form></app-positions-form>
+  <app-positions-form
+    *ngIf="category?._id"
+    [categoryId]="category._id">
+  </app-positions-form>
 </div>
 
 <ng-template #dialogContainer>
   <mat-dialog-content class="mat-typography">
-    Do you really want to delete category {{category.name}}?
+    Do you really want to delete {{category.name}}?
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button [mat-dialog-close]="true">Yes</button>

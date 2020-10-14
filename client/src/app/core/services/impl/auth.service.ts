@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {User} from "@shared/interfaces";
-import {Observable} from "rxjs";
-import {tap} from "rxjs/operators";
-import {IAuthService, LoginResponse} from "../auth.service";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {User} from '@shared/interfaces';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {IAuthService, LoginResponse} from '../auth.service';
 
-export const LOCAL_STORAGE_TOKEN_NAME: string = 'auth-token';
+export const LOCAL_STORAGE_TOKEN_NAME = 'auth-token';
 
 @Injectable()
 export class AuthServiceImpl implements IAuthService {
@@ -31,7 +31,7 @@ export class AuthServiceImpl implements IAuthService {
       }));
   }
 
-  setToken(token: string) {
+  setToken(token: string): void {
     this.token = token;
   }
 

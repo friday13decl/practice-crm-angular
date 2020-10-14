@@ -1,8 +1,8 @@
-import {NgModule} from "@angular/core";
+import {NgModule} from '@angular/core';
 
-import {SharedModule} from "@shared/shared.module";
+import {SharedModule} from '@shared/shared.module';
 
-import {SiteRoutingModule} from "./site-routing.module";
+import {SiteRoutingModule} from './site-routing.module';
 import {SiteLayoutComponent} from './site-layout/site-layout.component';
 import {OverviewPageComponent} from './overview-page/overview-page.component';
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';

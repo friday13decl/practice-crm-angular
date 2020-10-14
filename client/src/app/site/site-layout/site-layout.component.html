@@ -24,37 +24,24 @@
     <div class="btn-action"
          (mouseover)="isMenuHidden = false"
          (mouseout)="isMenuHidden = true">
-      <button mat-fab color="warn">
+      <button mat-fab color="primary">
         <mat-icon>more_vert</mat-icon>
       </button>
       <ul [hidden]="isMenuHidden">
         <li>
           <button mat-mini-fab matTooltip="New order" matTooltipPosition="before"
-                  color="accent" routerLink="/order">
+                  matTooltipClass="page-tooltip" color="accent" routerLink="/order">
             <mat-icon>shopping_cart</mat-icon>
           </button>
         </li>
         <li>
           <button mat-mini-fab matTooltip="New category" matTooltipPosition="before"
-                  color="accent" routerLink="/categories/new">
+                  matTooltipClass="page-tooltip" color="accent" routerLink="/categories/new">
             <mat-icon>create</mat-icon>
           </button>
         </li>
       </ul>
     </div>
-
-<!--    <button mat-fab [matMenuTriggerFor]="aboveMenu" color="primary" class="btn-action">-->
-<!--    <button mat-fab color="primary" class="btn-action">-->
-<!--      <mat-icon>add</mat-icon>-->
-<!--    </button>-->
-<!--    <mat-menu #aboveMenu="matMenu" yPosition="above">-->
-<!--      <button mat-menu-item>-->
-<!--        <mat-icon>bookmark</mat-icon>-->
-<!--      </button>-->
-<!--      <button mat-menu-item>-->
-<!--        <mat-icon>additem</mat-icon>-->
-<!--      </button>-->
-<!--    </mat-menu>-->
   </mat-sidenav-content>
 </mat-sidenav-container>
 

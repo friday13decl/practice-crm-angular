@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {BasePageComponent} from "../base-page/base-page.component";
-import {IAuthService} from "@core/services/auth.service";
-import {Subscription} from "rxjs";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {BasePageComponent} from '../base-page/base-page.component';
+import {IAuthService} from '@core/services/auth.service';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-page',
@@ -26,12 +26,12 @@ export class LoginPageComponent extends BasePageComponent implements OnInit, OnD
   ngOnInit(): void {
     super.ngOnInit();
 
-    this.route.queryParams.subscribe((params: Params) => {
-      if (params['registered']) {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      if (params.get('registered')) {
         this.showToast('Now you can login with your credentials');
-      } else if (params['accessDenied']) {
+      } else if (params.get('accessDenied')) {
         this.showToast('Please login into system');
-      } else if (params['sessionFailed']) {
+      } else if (params.get('sessionFailed')) {
         this.showToast('Your session is expired. Please login into system again');
       }
     });

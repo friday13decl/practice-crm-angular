@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {IAuthService, LoginResponse} from "../auth.service";
-import {User} from "@shared/interfaces";
-import {Observable, of} from "rxjs";
+import {IAuthService, LoginResponse} from '../auth.service';
+import {User} from '@shared/interfaces';
+import {Observable, of} from 'rxjs';
 
-export const LOCAL_STORAGE_TOKEN_NAME: string = 'auth-token';
+export const LOCAL_STORAGE_TOKEN_NAME = 'auth-token';
 
 @Injectable()
 export class AuthServiceMock implements IAuthService {
@@ -26,7 +26,7 @@ export class AuthServiceMock implements IAuthService {
   }
 
   login(user: User): Observable<LoginResponse> {
-    const token = "token from mock";
+    const token = 'token from mock';
     localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, token);
     this.setToken(token);
     return of({token});

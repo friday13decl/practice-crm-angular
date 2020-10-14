@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {ICategoriesService} from "../categories.service";
-import {fromEvent, Observable, of} from "rxjs";
-import {Category, ServerMessage} from "@shared/interfaces";
-import {delay, switchMap} from "rxjs/operators";
+import {ICategoriesService} from '../categories.service';
+import {fromEvent, Observable, of} from 'rxjs';
+import {Category, ServerMessage} from '@shared/interfaces';
+import {delay, switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class CategoriesServiceMock implements ICategoriesService {
 
-  private count: number = 0;
+  private count = 0;
 
   private categories: Array<Category> = [
     {
@@ -20,7 +20,7 @@ export class CategoriesServiceMock implements ICategoriesService {
       name: 'Category 2',
       imageSrc: 'https://pbs.twimg.com/media/DgCnE2mU0AYwuaz.jpg'
     }
-  ]
+  ];
 
   constructor() {
   }
@@ -43,17 +43,17 @@ export class CategoriesServiceMock implements ICategoriesService {
           imageSrc = reader.result;
           const category: Category = {
             name, imageSrc, _id: (++this.count) + ''
-          }
+          };
           this.categories.push(category);
           return of(category).pipe(delay(1000));
         })
-      )
+      );
       reader.readAsDataURL(image);
       return obs$;
     } else {
       const category: Category = {
         name, imageSrc, _id: (++this.count) + ''
-      }
+      };
       this.categories.push(category);
       return of(category).pipe(delay(1000));
     }

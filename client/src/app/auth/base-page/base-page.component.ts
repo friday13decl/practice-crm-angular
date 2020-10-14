@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({template: ''})
@@ -8,11 +8,11 @@ export abstract class BasePageComponent implements OnInit {
 
   form: FormGroup;
 
-  hide: boolean = true;
+  hide = true;
 
-  headerText: string = '';
-  submitBtnText: string = '';
-  subHeaderText: string = 'Rule the world';
+  headerText = '';
+  submitBtnText = '';
+  subHeaderText = 'Rule the world';
 
   protected constructor(private snackbar: MatSnackBar) {
   }
@@ -27,8 +27,8 @@ export abstract class BasePageComponent implements OnInit {
   showToast(msg: string): void {
     this.snackbar.open(msg, null, {
       duration: 3000,
-      horizontalPosition: "center",
-      verticalPosition: "top"
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
     });
   }
 
@@ -40,7 +40,7 @@ export abstract class BasePageComponent implements OnInit {
     }
 
     if (control.hasError('minlength')) {
-      return `Password should be more than ${control.errors['minlength']['requiredLength']} symbols`;
+      return `Password should be more than ${control.errors.minlength.requiredLength} symbols`;
     }
 
     return control.hasError('email') ? 'Not a valid email' : '';

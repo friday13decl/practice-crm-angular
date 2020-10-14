@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {BasePageComponent} from "../base-page/base-page.component";
-import {IAuthService} from "@core/services/auth.service";
-import {Router} from "@angular/router";
-import {Subscription} from "rxjs";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {BasePageComponent} from '../base-page/base-page.component';
+import {IAuthService} from '@core/services/auth.service';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-page',
@@ -33,13 +33,13 @@ export class RegisterPageComponent extends BasePageComponent implements OnInit, 
           queryParams: {
             registered: true
           }
-        })
+        });
       },
       err => {
         this.showToast(err.error.message);
         this.form.enable();
       }
-    )
+    );
   }
 
   ngOnDestroy(): void {
