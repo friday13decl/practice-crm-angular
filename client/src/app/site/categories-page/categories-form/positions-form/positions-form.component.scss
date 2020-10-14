@@ -18,6 +18,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
 
       &:not(:last-child) {
         border-bottom: 0 none;
@@ -26,11 +27,29 @@
       &:hover {
         background-color: rgba(255, 255, 255, 0.2);
       }
+
+      span {
+        flex: 0 0 50%;
+      }
+
+      strong {
+        margin-right: auto;
+      }
+
+      mat-icon:hover {
+        color: #f44336;
+      }
     }
 
     .collection-no-data {
       align-self: center;
       font-size: 1.5em;
     }
+  }
+}
+
+mat-dialog-content {
+  mat-form-field:not(:first-child) {
+    margin-left: 15px;
   }
 }

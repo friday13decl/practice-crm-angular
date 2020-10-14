@@ -4,19 +4,60 @@
     <button mat-raised-button color="primary" (click)="openDialog()">Add position</button>
   </div>
   <div class="collection">
-    <a class="collection-item" href="">Position 1 <mat-icon color="accent">delete</mat-icon></a>
-    <a class="collection-item" href="">Position 2 <mat-icon color="accent">delete</mat-icon></a>
+    <ng-container *ngIf="!loading; else loader">
+      <ng-container *ngIf="positions.length !== 0; else empty">
+        <a *ngFor="let position of positions" class="collection-item"
+           (click)="openDialog(position)">
+          <span>{{position.name}}</span>
+          <strong>${{position.cost}}</strong>
+          <mat-icon color="accent" (click)="deletePosition($event, position)"
+                    matTooltip="Delete position" matTooltipPosition="before"
+                    matTooltipClass="page-tooltip">delete</mat-icon>
+        </a>
+      </ng-container>
+    </ng-container>
   </div>
 </div>
 
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <span class="collection-no-data">No data!</span>
+</ng-template>
+
 <ng-template #dialogContainer>
   <h2 mat-dialog-title>Add new position</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="mat-typography">
+      <mat-form-field appearance="outline" color="accent" hideRequiredMarker="true">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="name" type="text" id="name" required>
+        <mat-error *ngIf="form.controls.name.invalid">Please fill the title</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent" hideRequiredMarker="true">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="cost" type="number" id="cost" required>
+        <mat-error *ngIf="form.controls.cost.invalid">
+          {{form.controls.cost.hasError('min') ?
+          'Price must be greater than 0' : 'Please fill the price'}}
+        </mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button type="submit" mat-button [mat-dialog-close]="true">Save</button>
+      <button type="button" mat-button mat-dialog-close cdkFocusInitial>Close</button>
+    </mat-dialog-actions>
+  </form>
+</ng-template>
+
+<ng-template #deleteDialogContainer>
   <mat-dialog-content class="mat-typography">
-    <p>Learn one way to build applications with Angular and reuse your code and abilities to build
-      apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
+    Do you really want to delete {{deleteCandidateName}}?
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="true">Add</button>
-    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-button [mat-dialog-close]="true">Yes</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>No</button>
   </mat-dialog-actions>
 </ng-template>
