@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "server": "nodemon -r dotenv/config index"
+    "server": "nodemon -r dotenv/config index dotenv_config_path=../.env"
   },
   "keywords": [
     "angular",

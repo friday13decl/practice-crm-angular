@@ -2,9 +2,7 @@ version: "3.8"
 
 services:
   crm-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: server/
     image: crm-server
     container_name: crm-server
     restart: unless-stopped
