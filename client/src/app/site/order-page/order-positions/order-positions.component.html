@@ -1,0 +1,48 @@
+<div class="collection">
+  <div *ngIf="positions$ | async as positions; else loader">
+    <mat-table [dataSource]="positions">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef> Amount</mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          <mat-form-field>
+            <input [(ngModel)]="quantity[i]" matInput type="number" min="1">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="add">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row; let i = index">
+          <button mat-icon-button (click)="add(row, quantity[i])">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <tr class="mat-row no-data-row" *matNoDataRow>
+        <td class="mat-cell no-data-cell" colspan="9999">
+          No data
+        </td>
+      </tr>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

@@ -1,1 +1,63 @@
-<p>order-page works!</p>
+<div class="page-title">
+  <h4 *ngIf="isRoot">Order</h4>
+  <h4 *ngIf="!isRoot">
+    <a routerLink="/order">Order</a>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+    Add position to order
+  </h4>
+  <button mat-raised-button color="accent" (click)="onComplete()"
+          [disabled]="ordersService.order.length === 0">Complete</button>
+</div>
+
+<div class="order-content">
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #dialogContainer>
+  <h1 mat-dialog-title>Your Order</h1>
+  <mat-dialog-content class="mat-typography">
+    <mat-table [dataSource]="ordersService.order">
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.position.name}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef>Total</mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> {{ordersService.total}} </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onDelete(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <tr class="mat-row no-data-row" *matNoDataRow>
+        <td class="mat-cell no-data-cell" colspan="9999">
+          No data
+        </td>
+      </tr>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="displayedColumnsFooter"></mat-footer-row>
+
+    </mat-table>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [disabled]="ordersService.order.length === 0" [mat-dialog-close]="true">Order</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  </mat-dialog-actions>
+</ng-template>

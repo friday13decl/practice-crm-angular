@@ -18,6 +18,12 @@ export interface Position {
   user?: string;
 }
 
+export interface OrderItem {
+  position: Position;
+  quantity: number;
+  price: number;
+}
+
 export interface ServerMessage {
   message: string;
 }

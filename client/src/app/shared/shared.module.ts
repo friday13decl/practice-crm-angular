@@ -14,6 +14,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 import {LoaderComponent} from './components/loader/loader.component';
 
@@ -36,7 +37,8 @@ import {LoaderComponent} from './components/loader/loader.component';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   exports: [
     CommonModule,
@@ -54,6 +56,7 @@ import {LoaderComponent} from './components/loader/loader.component';
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatDialogModule,
+    MatTableModule,
     LoaderComponent
   ]
 })

@@ -1,0 +1,32 @@
+.collection {
+  display: flex;
+  flex-wrap: wrap;
+
+  mat-card {
+    flex: 0 0 24%;
+    padding-top: 32px;
+    margin-top: 15px;
+    margin-right: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    .img-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .mat-card-image {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .collection-no-data {
+    align-self: center;
+    font-size: 1.5em;
+  }
+}

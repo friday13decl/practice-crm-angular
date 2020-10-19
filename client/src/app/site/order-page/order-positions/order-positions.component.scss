@@ -1,0 +1,11 @@
+.collection {
+  .no-data-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .no-data-cell {
+    border: 0 none;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="collection" *ngIf="categories$ | async as categories; else loader">
+  <ng-container *ngIf="categories.length !== 0; else empty">
+    <mat-card *ngFor="let category of categories" [routerLink]="['/order', category._id]">
+      <div class="img-container">
+        <img mat-card-image src="{{category.imageSrc}}">
+      </div>
+      <mat-card-content>{{category.name}}</mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <span class="collection-no-data">No data!</span>
+</ng-template>
