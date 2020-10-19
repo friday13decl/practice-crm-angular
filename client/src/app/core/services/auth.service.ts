@@ -9,7 +9,7 @@ export type LoginResponse = { token: string };
 
 @Injectable({
   providedIn: 'root',
-  useClass: environment.production ? AuthServiceImpl : AuthServiceMock
+  useClass: environment.mockServices ? AuthServiceMock : AuthServiceImpl
 })
 export abstract class IAuthService {
   abstract register(user: User): Observable<User>;

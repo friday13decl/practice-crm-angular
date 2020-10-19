@@ -7,7 +7,7 @@ import {PositionsServiceMock} from '@core/services/mock/positions.service';
 
 @Injectable({
   providedIn: 'root',
-  useClass: environment.production ? PositionsServiceImpl : PositionsServiceMock
+  useClass: environment.mockServices ? PositionsServiceMock : PositionsServiceImpl
 })
 export abstract class IPositionsService {
 

@@ -7,7 +7,7 @@ import {CategoriesServiceMock} from './mock/categories.service';
 
 @Injectable({
   providedIn: 'root',
-  useClass: environment.production ? CategoriesServiceImpl : CategoriesServiceMock
+  useClass: environment.mockServices ? CategoriesServiceMock : CategoriesServiceImpl
 })
 export abstract class ICategoriesService {
   abstract fetch(): Observable<Array<Category>>;
