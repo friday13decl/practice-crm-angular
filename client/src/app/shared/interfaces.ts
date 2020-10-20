@@ -19,9 +19,16 @@ export interface Position {
 }
 
 export interface OrderItem {
-  position: Position;
+  position?: Position;
+  name: string;
   quantity: number;
-  price: number;
+  cost: number;
+}
+
+export interface Order {
+  date?: string;
+  order?: number;
+  list: Array<OrderItem>;
 }
 
 export interface ServerMessage {

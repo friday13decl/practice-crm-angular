@@ -6,7 +6,7 @@
     Add position to order
   </h4>
   <button mat-raised-button color="accent" (click)="onComplete()"
-          [disabled]="ordersService.order.length === 0">Complete</button>
+          [disabled]="order.length === 0 || pending">Complete</button>
 </div>
 
 <div class="order-content">
@@ -16,7 +16,7 @@
 <ng-template #dialogContainer>
   <h1 mat-dialog-title>Your Order</h1>
   <mat-dialog-content class="mat-typography">
-    <mat-table [dataSource]="ordersService.order">
+    <mat-table [dataSource]="order">
 
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
@@ -31,8 +31,8 @@
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
-        <mat-footer-cell *matFooterCellDef> {{ordersService.total}} </mat-footer-cell>
+        <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> {{total$ | async}} </mat-footer-cell>
       </ng-container>
 
       <ng-container matColumnDef="delete">
@@ -57,7 +57,8 @@
     </mat-table>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button [disabled]="ordersService.order.length === 0" [mat-dialog-close]="true">Order</button>
-    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-button [disabled]="order.length === 0 || pending"
+            [mat-dialog-close]="true" cdkFocusInitial>Order</button>
+    <button mat-button mat-dialog-close>Cancel</button>
   </mat-dialog-actions>
 </ng-template>

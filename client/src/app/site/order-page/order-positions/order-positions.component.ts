@@ -4,7 +4,7 @@ import {IPositionsService} from '@core/services/positions.service';
 import {Observable} from 'rxjs';
 import {Position} from '@shared/interfaces';
 import {switchMap, tap} from 'rxjs/operators';
-import {OrdersService} from '../orders.service';
+import {OrderService} from '../order.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -21,7 +21,7 @@ export class OrderPositionsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private positionsService: IPositionsService,
-              private ordersService: OrdersService,
+              private orderService: OrderService,
               private snackbar: MatSnackBar) {
   }
 
@@ -39,7 +39,7 @@ export class OrderPositionsComponent implements OnInit {
   }
 
   add(position: Position, quantity: number): void {
-    this.ordersService.add(position, quantity);
+    this.orderService.add(position, quantity);
     this.showToast(`${position.name} was added to order in amount of ${quantity}`);
   }
 
