@@ -64,7 +64,14 @@ export class OrdersServiceMock implements IOrdersService {
   }
 
   fetch(params: any): Observable<Array<Order>> {
-    const {offset, limit} = params;
-    return of(this.orders.slice(offset, offset + limit)).pipe(delay(1000));
+    const {offset, limit, order, start, end} = params;
+    let filtered: Array<Order> = this.orders.filter(item => {
+      if (order && item.order !== order) {
+        return false;
+      }
+      return true;
+    });
+    filtered = filtered.slice(offset, offset + limit);
+    return of(filtered).pipe(delay(1000));
   }
 }

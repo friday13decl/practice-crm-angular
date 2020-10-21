@@ -2,13 +2,13 @@
   <h4>History</h4>
   <button mat-raised-button color="accent" matTooltip="Open filter"
           matTooltipPosition="before" matTooltipClass="page-tooltip"
-          [ngClass]="{'active': isFilterVisible}"
+          [ngClass]="{'active': isFilterVisible, 'mat-warn': isFiltered}"
           (click)="isFilterVisible = !isFilterVisible">
     <mat-icon>filter_list</mat-icon>
   </button>
 </div>
 
-<app-history-filter *ngIf="isFilterVisible"></app-history-filter>
+<app-history-filter *ngIf="isFilterVisible" (filterChanged)="applyFilter($event)"></app-history-filter>
 
 <ng-container *ngIf="!reloading; else reloader">
   <ng-container *ngIf="orders.length !== 0; else empty">

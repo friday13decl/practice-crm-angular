@@ -15,6 +15,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 import {LoaderComponent} from './components/loader/loader.component';
 
@@ -38,7 +40,9 @@ import {LoaderComponent} from './components/loader/loader.component';
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     CommonModule,
@@ -57,6 +61,8 @@ import {LoaderComponent} from './components/loader/loader.component';
     MatTooltipModule,
     MatDialogModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     LoaderComponent
   ]
 })

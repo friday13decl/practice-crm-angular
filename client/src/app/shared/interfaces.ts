@@ -34,3 +34,9 @@ export interface Order {
 export interface ServerMessage {
   message: string;
 }
+
+export interface OrderFilter {
+  start?: Date;
+  end?: Date;
+  order?: number;
+}
