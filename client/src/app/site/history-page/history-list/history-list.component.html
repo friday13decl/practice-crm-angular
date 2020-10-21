@@ -1,0 +1,53 @@
+<div class="history-list">
+  <div class="header">#</div>
+  <div class="header">Date</div>
+  <div class="header">Time</div>
+  <div class="header">Price</div>
+  <div class="header">&nbsp;</div>
+
+  <ng-container *ngFor="let order of orders">
+    <div>{{order.order}}</div>
+    <div>{{order.date | date: 'dd.MM.yyyy'}}</div>
+    <div>{{order.date | date: 'HH:mm:ss'}}</div>
+    <div>{{computePrice(order)}}</div>
+    <div>
+      <button mat-stroked-button type="button" (click)="openDetails(order)">
+        <mat-icon>open_in_new</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+
+<ng-template #dialogContainer>
+  <h1 mat-dialog-title>Order #{{selectedOrder.order}}</h1>
+  <mat-dialog-content class="mat-typography">
+    <mat-table [dataSource]="selectedOrder.list">
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef>Total</mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> {{computePrice(selectedOrder)}} </mat-footer-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="displayedColumnsFooter"></mat-footer-row>
+
+    </mat-table>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+</ng-template>

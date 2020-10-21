@@ -76,9 +76,7 @@ export class OrderPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subs.length > 0) {
-      this.subs.forEach(sub => sub.unsubscribe());
-    }
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
 }

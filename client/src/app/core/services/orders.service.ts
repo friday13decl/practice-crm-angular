@@ -11,4 +11,6 @@ import {OrdersServiceMock} from '@core/services/mock/orders.service';
 })
 export abstract class IOrdersService {
   abstract create(items: Array<OrderItem>): Observable<Order>;
+
+  abstract fetch(params: any): Observable<Array<Order>>;
 }

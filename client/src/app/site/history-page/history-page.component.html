@@ -1,1 +1,33 @@
-<p>history-page works!</p>
+<div class="page-title">
+  <h4>History</h4>
+  <button mat-raised-button color="accent" matTooltip="Open filter"
+          matTooltipPosition="before" matTooltipClass="page-tooltip"
+          [ngClass]="{'active': isFilterVisible}"
+          (click)="isFilterVisible = !isFilterVisible">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+</div>
+
+<app-history-filter *ngIf="isFilterVisible"></app-history-filter>
+
+<ng-container *ngIf="!reloading; else reloader">
+  <ng-container *ngIf="orders.length !== 0; else empty">
+    <app-history-list [orders]="orders"></app-history-list>
+
+    <div class="show-more" *ngIf="!noMoreOrders">
+      <button *ngIf="!loading; else loader" mat-raised-button (click)="showMore()">Show more</button>
+    </div>
+  </ng-container>
+  <ng-template #empty>
+    <div class="no-data">There are no orders!</div>
+  </ng-template>
+</ng-container>
+
+<ng-template #loader>
+  <app-loader zeroMargin="true"></app-loader>
+</ng-template>
+
+<ng-template #reloader>
+  <app-loader></app-loader>
+</ng-template>
+

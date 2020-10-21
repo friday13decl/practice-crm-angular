@@ -7,6 +7,52 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class OrdersServiceMock implements IOrdersService {
 
+  orders: Array<Order> = [
+    {
+      date: '2020-05-07T08:30:00.580Z',
+      order: 3,
+      list: [
+        {
+          name: 'Position 111',
+          quantity: 8,
+          cost: 50
+        },
+        {
+          name: 'Position 222',
+          quantity: 2,
+          cost: 200
+        }
+      ]
+    },
+    {
+      date: '2019-04-06T20:05:12.580Z',
+      order: 2,
+      list: [
+        {
+          name: 'Position 555',
+          quantity: 4,
+          cost: 150
+        },
+        {
+          name: 'Position 777',
+          quantity: 2,
+          cost: 200
+        }
+      ]
+    },
+    {
+      date: '2018-03-05T15:05:12.580Z',
+      order: 1,
+      list: [
+        {
+          name: 'Position 999',
+          quantity: 4,
+          cost: 150
+        }
+      ]
+    }
+  ];
+
   constructor() {
   }
 
@@ -15,5 +61,10 @@ export class OrdersServiceMock implements IOrdersService {
       list: items,
       order: 3450953
     }).pipe(delay(1000));
+  }
+
+  fetch(params: any): Observable<Array<Order>> {
+    const {offset, limit} = params;
+    return of(this.orders.slice(offset, offset + limit)).pipe(delay(1000));
   }
 }
