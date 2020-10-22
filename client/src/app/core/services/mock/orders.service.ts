@@ -15,12 +15,12 @@ export class OrdersServiceMock implements IOrdersService {
         {
           name: 'Position 111',
           quantity: 8,
-          cost: 50
+          cost: 15
         },
         {
           name: 'Position 222',
           quantity: 2,
-          cost: 200
+          cost: 25
         }
       ]
     },
@@ -31,12 +31,12 @@ export class OrdersServiceMock implements IOrdersService {
         {
           name: 'Position 555',
           quantity: 4,
-          cost: 150
+          cost: 30
         },
         {
           name: 'Position 777',
           quantity: 2,
-          cost: 200
+          cost: 22
         }
       ]
     },
@@ -47,7 +47,7 @@ export class OrdersServiceMock implements IOrdersService {
         {
           name: 'Position 999',
           quantity: 4,
-          cost: 150
+          cost: 45
         }
       ]
     }

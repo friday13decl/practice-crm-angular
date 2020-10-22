@@ -12,21 +12,22 @@ export class OrderService {
   total$: BehaviorSubject<number> = new BehaviorSubject(this.total);
 
   add(position: Position, quantity: number): void {
-    const same = this.order.findIndex(item => item.position._id === position._id);
+    const {name, cost, _id} = position;
+    const same = this.order.findIndex(item => item.position_id === _id);
     if (same >= 0) {
       this.order[same].quantity += quantity;
     } else {
-      this.order.push({position, quantity, cost: position.cost * quantity, name: position.name});
+      this.order.push({position_id: _id, quantity, cost, name});
     }
-    this.total += quantity * position.cost;
+    this.total += quantity * cost;
     this.order$.next(this.order);
     this.total$.next(this.total);
   }
 
   delete(candidate: OrderItem): void {
     this.order = this.order.filter(item => {
-      if (item.position._id === candidate.position._id) {
-        this.total -= item.quantity * item.position.cost;
+      if (item.position_id === candidate.position_id) {
+        this.total -= item.quantity * item.cost;
         this.total$.next(this.total);
         return false;
       }

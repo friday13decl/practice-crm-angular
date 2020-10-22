@@ -20,7 +20,7 @@
 
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position.name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
         <mat-footer-cell *matFooterCellDef>Total</mat-footer-cell>
       </ng-container>
 
@@ -31,7 +31,7 @@
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.cost * element.quantity}} </mat-cell>
         <mat-footer-cell *matFooterCellDef> {{total$ | async}} </mat-footer-cell>
       </ng-container>
 

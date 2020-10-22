@@ -14,7 +14,7 @@ export class OrdersServiceImpl implements IOrdersService {
     return this.http.post<Order>('/api/order', {
       list: items.map(item => ({
         name: item.name,
-        cost: item.position.cost,
+        cost: item.cost,
         quantity: item.quantity
       }))
     });

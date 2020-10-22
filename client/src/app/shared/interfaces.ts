@@ -19,7 +19,7 @@ export interface Position {
 }
 
 export interface OrderItem {
-  position?: Position;
+  position_id?: string;
   name: string;
   quantity: number;
   cost: number;
