@@ -1,1 +1,56 @@
-<p>overview-page works!</p>
+<div class="page-title">
+  <h4>
+    Overview for yesterday ({{yesterday | date: 'dd.MM.yyyy'}})
+    <mat-icon (click)="openInfo()">info_outline</mat-icon>
+  </h4>
+</div>
+
+<div *ngIf="overview$ | async as overview; else loader" class="container">
+  <mat-card class="gain-card mat-primary">
+    <mat-card-title>Gain:</mat-card-title>
+    <mat-card-content>
+      <div class="main">$ {{overview.gain.yesterday}}</div>
+      <div class="percent" [ngClass]="{
+        'green-text': overview.gain.isHigher,
+        'red-text': !overview.gain.isHigher
+      }">
+        <mat-icon>{{overview.gain.isHigher ? 'arrow_upward' : 'arrow_downward'}}</mat-icon>
+        {{overview.gain.percent}}%
+      </div>
+      <div class="addons">
+        Yesterday your gain was on {{overview.gain.percent}}%
+        {{overview.gain.isHigher ? 'higher' : 'lower'}} than the average:
+        {{overview.gain.compare}} per day
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="orders-card mat-accent">
+    <mat-card-title>Orders:</mat-card-title>
+    <mat-card-content>
+      <div class="main">{{overview.orders.yesterday}} order(s)</div>
+      <div class="percent" [ngClass]="{
+        'green-text': overview.orders.isHigher,
+        'red-text': !overview.orders.isHigher
+      }">
+        <mat-icon>{{overview.orders.isHigher ? 'arrow_upward' : 'arrow_downward'}}</mat-icon>
+        {{overview.orders.percent}}%
+      </div>
+      <div class="addons">
+        Yesterday amount of orders was on {{overview.orders.percent}}%
+        {{overview.orders.isHigher ? 'higher' : 'lower'}} than the average:
+        {{overview.orders.compare}} per day
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #bottomSheet>
+  <div>
+    <h2>What is the main goal of this page?</h2>
+    <p>This page shows to you some analytics</p>
+  </div>
+</ng-template>

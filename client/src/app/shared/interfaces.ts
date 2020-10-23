@@ -40,3 +40,15 @@ export interface OrderFilter {
   end?: Date;
   order?: number;
 }
+
+export interface OverviewDetails {
+  percent: number;
+  compare: number;
+  yesterday: number;
+  isHigher: boolean;
+}
+
+export interface OverviewData {
+  gain: OverviewDetails;
+  orders: OverviewDetails;
+}

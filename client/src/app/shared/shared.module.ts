@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 import {LoaderComponent} from './components/loader/loader.component';
 
@@ -42,7 +43,8 @@ import {LoaderComponent} from './components/loader/loader.component';
     MatDialogModule,
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatBottomSheetModule
   ],
   exports: [
     CommonModule,
@@ -63,7 +65,8 @@ import {LoaderComponent} from './components/loader/loader.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    LoaderComponent
+    LoaderComponent,
+    MatBottomSheetModule
   ]
 })
 export class SharedModule {

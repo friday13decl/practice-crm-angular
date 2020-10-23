@@ -1,0 +1,51 @@
+.page-title {
+  display: flex;
+  justify-content: space-between;
+
+  h4 {
+    font-size: 2.5em;
+
+    mat-icon {
+      cursor: pointer;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  margin: 20px 0;
+  justify-content: space-around;
+
+  mat-card {
+    flex: 0 0 45%;
+
+    &.gain-card {
+      background-color: #38b0fe;
+    }
+
+    &.orders-card {
+      background-color: #eba422;
+    }
+
+    .main {
+      margin: 30px 0;
+      font-size: 2em;
+    }
+
+    .percent {
+      font-size: 2em;
+
+      &.green-text {
+        color: #00ff00;
+      }
+
+      &.red-text {
+        color: red;
+      }
+    }
+
+    .addons {
+      margin-top: 20px;
+    }
+  }
+}
