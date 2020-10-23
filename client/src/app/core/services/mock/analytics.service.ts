@@ -2,7 +2,7 @@ import {IAnalyticsService} from '@core/services/analytics.service';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {OverviewData} from '@shared/interfaces';
+import {AnalyticsData, OverviewData} from '@shared/interfaces';
 import {delay} from 'rxjs/operators';
 
 @Injectable()
@@ -23,11 +23,33 @@ export class AnalyticsServiceMock implements IAnalyticsService {
     }
   };
 
+  analyticsData: AnalyticsData = {
+    average: 150,
+    chart: [
+      {
+        label: '18.10.2020',
+        gain: 300,
+        orders: 3
+      },
+      {
+        label: '20.10.2020',
+        gain: 480,
+        orders: 8
+      },
+      {
+        label: '21.10.2020',
+        gain: 275,
+        orders: 4
+      }
+    ]
+  };
+
   getOverview(): Observable<OverviewData> {
     return of(this.overviewData).pipe(delay(1000));
   }
 
-  getAnalytics(): void {
+  getAnalytics(): Observable<AnalyticsData> {
+    return of(this.analyticsData).pipe(delay(1000));
   }
 
 }

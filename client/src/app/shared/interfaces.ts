@@ -52,3 +52,14 @@ export interface OverviewData {
   gain: OverviewDetails;
   orders: OverviewDetails;
 }
+
+export interface AnalyticsChart {
+  gain: number;
+  orders: number;
+  label: string;
+}
+
+export interface AnalyticsData {
+  average: number;
+  chart: Array<AnalyticsChart>;
+}

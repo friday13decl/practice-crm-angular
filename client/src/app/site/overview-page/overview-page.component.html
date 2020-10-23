@@ -27,7 +27,7 @@
   <mat-card class="orders-card mat-accent">
     <mat-card-title>Orders:</mat-card-title>
     <mat-card-content>
-      <div class="main">{{overview.orders.yesterday}} order(s)</div>
+      <div class="main">{{overview.orders.yesterday}} order{{overview.orders.yesterday > 1 ? 's' : ''}}</div>
       <div class="percent" [ngClass]="{
         'green-text': overview.orders.isHigher,
         'red-text': !overview.orders.isHigher

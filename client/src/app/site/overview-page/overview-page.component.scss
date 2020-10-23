@@ -1,7 +1,4 @@
 .page-title {
-  display: flex;
-  justify-content: space-between;
-
   h4 {
     font-size: 2.5em;
 
@@ -13,7 +10,7 @@
 
 .container {
   display: flex;
-  margin: 20px 0;
+  margin: 30px 0 10px;
   justify-content: space-around;
 
   mat-card {
@@ -25,6 +22,10 @@
 
     &.orders-card {
       background-color: #eba422;
+    }
+
+    mat-card-title {
+      margin-top: 10px;
     }
 
     .main {
@@ -45,7 +46,7 @@
     }
 
     .addons {
-      margin-top: 20px;
+      margin: 30px 0 5px;
     }
   }
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from '@env';
 import {AnalyticsServiceImpl} from '@core/services/impl/analytics.service';
-import {OverviewData} from '@shared/interfaces';
+import {AnalyticsData, OverviewData} from '@shared/interfaces';
 import {AnalyticsServiceMock} from '@core/services/mock/analytics.service';
 
 @Injectable({
@@ -12,5 +12,5 @@ import {AnalyticsServiceMock} from '@core/services/mock/analytics.service';
 export abstract class IAnalyticsService {
   abstract getOverview(): Observable<OverviewData>;
 
-  abstract getAnalytics(): void;
+  abstract getAnalytics(): Observable<AnalyticsData>;
 }
